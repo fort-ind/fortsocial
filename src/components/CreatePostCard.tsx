@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Image, Smile, Users, MapPin, Send } from 'lucide-react';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardFooter } from '@/components/ui/card';
+import { Card } from '@/components/ui/card';
 import { Textarea } from '@/components/ui/textarea';
 
 const CreatePostCard = () => {
@@ -16,10 +16,10 @@ const CreatePostCard = () => {
   };
   
   return (
-    <Card className="post-card mb-4">
-      <CardContent className="pt-4">
+    <Card className="bg-white shadow-sm mb-5 rounded-md overflow-hidden border border-gray-200">
+      <div className="p-4">
         <div className="flex gap-3">
-          <Avatar>
+          <Avatar className="h-12 w-12">
             <AvatarImage src="/placeholder.svg" alt="Profile" />
             <AvatarFallback>U</AvatarFallback>
           </Avatar>
@@ -28,12 +28,13 @@ const CreatePostCard = () => {
               value={postText}
               onChange={(e) => setPostText(e.target.value)}
               placeholder="Share something with your circles..."
-              className="resize-none border-none focus-visible:ring-0 p-0 h-24"
+              className="resize-none border-none focus-visible:ring-0 p-0 h-24 text-lg"
             />
           </div>
         </div>
-      </CardContent>
-      <CardFooter className="border-t pt-3 flex flex-wrap items-center justify-between gap-2">
+      </div>
+      
+      <div className="px-4 pb-4 pt-2 border-t flex flex-wrap items-center justify-between gap-2">
         <div className="flex items-center space-x-2">
           <Button variant="ghost" size="sm" className="text-gray-600 hover:text-primary">
             <Image className="mr-1 h-4 w-4" />
@@ -52,15 +53,25 @@ const CreatePostCard = () => {
             <span className="text-sm">Location</span>
           </Button>
         </div>
+        
         <Button 
           onClick={handleSubmit} 
-          className="bg-primary hover:bg-primary/90"
+          variant="outline"
+          className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90 px-6"
           disabled={!postText.trim()}
         >
-          <Send className="mr-1 h-4 w-4" />
-          Post
+          Share
         </Button>
-      </CardFooter>
+      </div>
+      
+      <div className="px-4 py-2 border-t flex items-center text-sm">
+        <span className="text-gray-500 mr-2">To:</span>
+        <div className="flex items-center bg-gray-100 rounded-full px-3 py-1 text-sm mr-2">
+          <span>Circles</span>
+          <span className="ml-1">▾</span>
+        </div>
+        <span className="text-primary cursor-pointer">+ Add more people</span>
+      </div>
     </Card>
   );
 };

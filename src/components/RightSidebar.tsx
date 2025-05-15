@@ -1,99 +1,98 @@
 
 import React from 'react';
-import { PlusCircle } from 'lucide-react';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 
-const TrendingTopic = ({ title, posts }: { title: string; posts: string }) => (
-  <div className="py-2">
-    <a href="#" className="hover:text-primary">
-      <p className="font-medium">{title}</p>
-      <p className="text-xs text-gray-500">{posts} posts</p>
-    </a>
-  </div>
-);
-
-const SuggestedUser = ({ name, avatar, mutual }: { name: string; avatar: string; mutual: number }) => (
-  <div className="flex items-center justify-between py-2">
-    <div className="flex items-center">
-      <Avatar className="h-8 w-8 mr-2">
-        <AvatarImage src={avatar} />
-        <AvatarFallback>{name[0]}</AvatarFallback>
-      </Avatar>
-      <div>
-        <p className="text-sm font-medium">{name}</p>
-        <p className="text-xs text-gray-500">{mutual} mutual connections</p>
-      </div>
-    </div>
-    <Button size="sm" variant="outline" className="h-8 rounded-full">
-      <PlusCircle className="h-4 w-4 mr-1" />
-      Add
-    </Button>
-  </div>
-);
-
-const CommunityCard = ({ name, image, members }: { name: string; image: string; members: string }) => (
-  <div className="flex items-center justify-between py-2">
-    <div className="flex items-center">
-      <div className="h-8 w-8 mr-2 rounded overflow-hidden">
-        <img src={image} alt={name} className="h-full w-full object-cover" />
-      </div>
-      <div>
-        <p className="text-sm font-medium">{name}</p>
-        <p className="text-xs text-gray-500">{members} members</p>
-      </div>
-    </div>
-    <Button size="sm" variant="outline" className="h-8 rounded-full">
-      Join
-    </Button>
-  </div>
-);
-
 const RightSidebar = () => {
   return (
-    <div className="hidden lg:block w-72">
-      <div className="sticky top-20 space-y-4">
-        <Card>
-          <CardHeader className="pb-2">
-            <CardTitle className="text-lg">Trending Topics</CardTitle>
+    <div className="hidden lg:block w-72 pt-4 pl-4">
+      <div className="sticky top-16">
+        <Card className="shadow-sm mb-4">
+          <CardHeader className="pb-3">
+            <CardTitle className="text-base font-medium">People in your circles</CardTitle>
           </CardHeader>
-          <CardContent>
-            <TrendingTopic title="Web Development" posts="5.2k" />
-            <TrendingTopic title="Artificial Intelligence" posts="3.8k" />
-            <TrendingTopic title="Photography Tips" posts="2.4k" />
-            <TrendingTopic title="Remote Work" posts="1.9k" />
-            <Button variant="ghost" className="w-full text-primary text-sm mt-2">
-              Show more
+          <CardContent className="pt-0">
+            <div className="flex flex-wrap gap-2">
+              {[1, 2, 3, 4, 5, 6, 7, 8].map((i) => (
+                <Avatar key={i} className="h-10 w-10 border-2 border-white hover:scale-110 transition-transform cursor-pointer">
+                  <AvatarImage src="/placeholder.svg" />
+                  <AvatarFallback>{String.fromCharCode(64 + i)}</AvatarFallback>
+                </Avatar>
+              ))}
+            </div>
+            <Button variant="ghost" className="w-full text-primary text-sm mt-3">
+              View all connections
             </Button>
           </CardContent>
         </Card>
-
-        <Card>
-          <CardHeader className="pb-2">
-            <CardTitle className="text-lg">Suggested People</CardTitle>
+        
+        <Card className="shadow-sm mb-4">
+          <CardHeader className="pb-3">
+            <CardTitle className="text-base font-medium">Suggested connections</CardTitle>
           </CardHeader>
-          <CardContent>
-            <SuggestedUser name="Alex Johnson" avatar="/placeholder.svg" mutual={12} />
-            <SuggestedUser name="Maria Garcia" avatar="/placeholder.svg" mutual={8} />
-            <SuggestedUser name="David Kim" avatar="/placeholder.svg" mutual={3} />
-            <Button variant="ghost" className="w-full text-primary text-sm mt-2">
-              View all
-            </Button>
+          <CardContent className="pt-0 space-y-3">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center">
+                <Avatar className="h-8 w-8 mr-2">
+                  <AvatarImage src="/placeholder.svg" />
+                  <AvatarFallback>S</AvatarFallback>
+                </Avatar>
+                <div>
+                  <p className="text-sm font-medium">Sarah Price</p>
+                  <p className="text-xs text-gray-500">Product Designer</p>
+                </div>
+              </div>
+              <Button variant="outline" className="h-7 text-xs rounded-full px-3">
+                Add
+              </Button>
+            </div>
+            
+            <div className="flex items-center justify-between">
+              <div className="flex items-center">
+                <Avatar className="h-8 w-8 mr-2">
+                  <AvatarImage src="/placeholder.svg" />
+                  <AvatarFallback>J</AvatarFallback>
+                </Avatar>
+                <div>
+                  <p className="text-sm font-medium">Jacky Hayward</p>
+                  <p className="text-xs text-gray-500">UX Engineer</p>
+                </div>
+              </div>
+              <Button variant="outline" className="h-7 text-xs rounded-full px-3">
+                Add
+              </Button>
+            </div>
+            
+            <div className="flex items-center justify-between">
+              <div className="flex items-center">
+                <Avatar className="h-8 w-8 mr-2">
+                  <AvatarImage src="/placeholder.svg" />
+                  <AvatarFallback>K</AvatarFallback>
+                </Avatar>
+                <div>
+                  <p className="text-sm font-medium">Kelly Fee</p>
+                  <p className="text-xs text-gray-500">Product Manager</p>
+                </div>
+              </div>
+              <Button variant="outline" className="h-7 text-xs rounded-full px-3">
+                Add
+              </Button>
+            </div>
           </CardContent>
         </Card>
-
-        <Card>
-          <CardHeader className="pb-2">
-            <CardTitle className="text-lg">Suggested Communities</CardTitle>
+        
+        <Card className="shadow-sm">
+          <CardHeader className="pb-3">
+            <CardTitle className="text-base font-medium">Hangouts</CardTitle>
           </CardHeader>
-          <CardContent>
-            <CommunityCard name="UX/UI Design" image="/placeholder.svg" members="8.2k" />
-            <CommunityCard name="Travel Adventures" image="/placeholder.svg" members="12k" />
-            <CommunityCard name="Food & Cooking" image="/placeholder.svg" members="5.7k" />
-            <Button variant="ghost" className="w-full text-primary text-sm mt-2">
-              Explore more
+          <CardContent className="pt-0">
+            <Button className="w-full bg-primary text-primary-foreground hover:bg-primary/90 mb-3">
+              Start a hangout
             </Button>
+            <p className="text-xs text-gray-500 text-center">
+              No one is hanging out right now. Be the first to start!
+            </p>
           </CardContent>
         </Card>
       </div>

@@ -1,9 +1,9 @@
 
 import React from 'react';
-import { Heart, MessageCircle, Share2, MoreHorizontal } from 'lucide-react';
+import { MessageCircle, Share2, MoreHorizontal } from 'lucide-react';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card';
+import { Card } from '@/components/ui/card';
 
 interface PostCardProps {
   user: {
@@ -25,53 +25,51 @@ interface PostCardProps {
 
 const PostCard: React.FC<PostCardProps> = ({ user, content, engagement }) => {
   return (
-    <Card className="post-card mb-4 animate-fade-in">
-      <CardHeader className="flex flex-row items-center space-y-0 pt-4 pb-2">
-        <div className="flex items-start space-x-3">
-          <Avatar>
-            <AvatarImage src={user.avatar} alt={user.name} />
-            <AvatarFallback>{user.name.charAt(0)}</AvatarFallback>
-          </Avatar>
-          <div className="flex flex-col">
-            <div className="flex items-center gap-2">
-              <span className="font-medium">{user.name}</span>
-              <span className="text-sm text-gray-500">@{user.handle}</span>
+    <Card className="bg-white shadow-sm rounded-md overflow-hidden border border-gray-200">
+      <div className="flex items-start p-4 pb-2">
+        <Avatar className="h-12 w-12 mr-3">
+          <AvatarImage src={user.avatar} alt={user.name} />
+          <AvatarFallback>{user.name.charAt(0)}</AvatarFallback>
+        </Avatar>
+        <div className="flex flex-col flex-1">
+          <div className="flex items-center justify-between">
+            <div>
+              <span className="font-medium text-blue-600">{user.name}</span>
+              <span className="text-xs text-gray-500 ml-2">{content.timestamp}</span>
             </div>
-            <span className="text-xs text-gray-500">{content.timestamp}</span>
+            <Button variant="ghost" size="icon" className="h-8 w-8">
+              <MoreHorizontal className="h-4 w-4" />
+            </Button>
           </div>
+          <div className="text-sm text-gray-500">@{user.handle}</div>
         </div>
-        <Button variant="ghost" size="icon" className="ml-auto">
-          <MoreHorizontal className="h-5 w-5" />
-        </Button>
-      </CardHeader>
-      <CardContent className="pt-2 pb-3">
+      </div>
+      
+      <div className="px-4 py-2">
         <p className="mb-3">{content.text}</p>
         {content.image && (
-          <div className="rounded-lg overflow-hidden">
+          <div className="rounded-md overflow-hidden mb-3">
             <img src={content.image} alt="Post content" className="w-full h-auto" />
           </div>
         )}
-      </CardContent>
-      <CardFooter className="border-t pt-2 pb-3 flex items-center justify-between">
-        <div className="flex items-center space-x-1">
-          <Button variant="ghost" size="sm" className="text-gray-600 hover:text-primary px-2">
-            <Heart className="mr-1 h-4 w-4" />
-            <span className="text-sm">{engagement.likes}</span>
-          </Button>
-        </div>
-        <div className="flex items-center space-x-1">
-          <Button variant="ghost" size="sm" className="text-gray-600 hover:text-primary px-2">
-            <MessageCircle className="mr-1 h-4 w-4" />
-            <span className="text-sm">{engagement.comments}</span>
-          </Button>
-        </div>
-        <div className="flex items-center space-x-1">
-          <Button variant="ghost" size="sm" className="text-gray-600 hover:text-primary px-2">
-            <Share2 className="mr-1 h-4 w-4" />
-            <span className="text-sm">{engagement.shares}</span>
-          </Button>
-        </div>
-      </CardFooter>
+      </div>
+      
+      <div className="px-4 py-2 border-t flex items-center space-x-4">
+        <Button variant="ghost" size="sm" className="text-gray-600 px-3 rounded-full hover:bg-gray-100">
+          <span className="mr-2">+1</span>
+          <span className="text-gray-500 text-sm">{engagement.likes}</span>
+        </Button>
+        
+        <Button variant="ghost" size="sm" className="text-gray-600 px-3 rounded-full hover:bg-gray-100">
+          <MessageCircle className="mr-2 h-4 w-4" />
+          <span className="text-gray-500 text-sm">{engagement.comments}</span>
+        </Button>
+        
+        <Button variant="ghost" size="sm" className="text-gray-600 px-3 rounded-full hover:bg-gray-100">
+          <Share2 className="mr-2 h-4 w-4" />
+          <span className="text-gray-500 text-sm">{engagement.shares}</span>
+        </Button>
+      </div>
     </Card>
   );
 };
