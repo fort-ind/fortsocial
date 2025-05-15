@@ -16,61 +16,47 @@ const CreatePostCard = () => {
   };
   
   return (
-    <Card className="bg-white shadow-sm mb-5 rounded-md overflow-hidden border border-gray-200">
-      <div className="p-4">
+    <Card className="bg-white shadow-sm mb-5 rounded-sm overflow-hidden border border-gray-200 max-w-2xl mx-auto">
+      <div className="p-4 pb-2">
         <div className="flex gap-3">
-          <Avatar className="h-12 w-12">
+          <Avatar className="h-10 w-10">
             <AvatarImage src="/placeholder.svg" alt="Profile" />
             <AvatarFallback>U</AvatarFallback>
           </Avatar>
-          <div className="flex-1">
+          <div className="flex-1 bg-[#f5f5f5] rounded-sm p-2">
             <Textarea
               value={postText}
               onChange={(e) => setPostText(e.target.value)}
-              placeholder="Share something with your circles..."
-              className="resize-none border-none focus-visible:ring-0 p-0 h-24 text-lg"
+              placeholder="Share what's new..."
+              className="resize-none border-none focus-visible:ring-0 p-0 h-16 text-base bg-transparent"
             />
           </div>
         </div>
       </div>
       
-      <div className="px-4 pb-4 pt-2 border-t flex flex-wrap items-center justify-between gap-2">
+      <div className="px-4 pb-4 flex items-center justify-between">
         <div className="flex items-center space-x-2">
-          <Button variant="ghost" size="sm" className="text-gray-600 hover:text-primary">
-            <Image className="mr-1 h-4 w-4" />
-            <span className="text-sm">Photo</span>
+          <Button variant="ghost" size="sm" className="text-gray-600 rounded-full hover:bg-gray-100 p-1">
+            <Image className="h-5 w-5" />
           </Button>
-          <Button variant="ghost" size="sm" className="text-gray-600 hover:text-primary">
-            <Users className="mr-1 h-4 w-4" />
-            <span className="text-sm">Circles</span>
+          <Button variant="ghost" size="sm" className="text-gray-600 rounded-full hover:bg-gray-100 p-1">
+            <Users className="h-5 w-5" />
           </Button>
-          <Button variant="ghost" size="sm" className="text-gray-600 hover:text-primary">
-            <Smile className="mr-1 h-4 w-4" />
-            <span className="text-sm">Mood</span>
+          <Button variant="ghost" size="sm" className="text-gray-600 rounded-full hover:bg-gray-100 p-1">
+            <Smile className="h-5 w-5" />
           </Button>
-          <Button variant="ghost" size="sm" className="text-gray-600 hover:text-primary">
-            <MapPin className="mr-1 h-4 w-4" />
-            <span className="text-sm">Location</span>
+          <Button variant="ghost" size="sm" className="text-gray-600 rounded-full hover:bg-gray-100 p-1">
+            <MapPin className="h-5 w-5" />
           </Button>
         </div>
         
         <Button 
           onClick={handleSubmit} 
-          variant="outline"
-          className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90 px-6"
           disabled={!postText.trim()}
+          className="bg-blue-500 hover:bg-blue-600 text-white rounded-sm"
         >
           Share
         </Button>
-      </div>
-      
-      <div className="px-4 py-2 border-t flex items-center text-sm">
-        <span className="text-gray-500 mr-2">To:</span>
-        <div className="flex items-center bg-gray-100 rounded-full px-3 py-1 text-sm mr-2">
-          <span>Circles</span>
-          <span className="ml-1">▾</span>
-        </div>
-        <span className="text-primary cursor-pointer">+ Add more people</span>
       </div>
     </Card>
   );

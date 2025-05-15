@@ -1,99 +1,67 @@
 
 import React from 'react';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 
 const RightSidebar = () => {
   return (
-    <div className="hidden lg:block w-72 pt-4 pl-4">
+    <div className="hidden lg:block w-60 pt-4 pl-4">
       <div className="sticky top-16">
-        <Card className="shadow-sm mb-4">
-          <CardHeader className="pb-3">
-            <CardTitle className="text-base font-medium">People in your circles</CardTitle>
-          </CardHeader>
-          <CardContent className="pt-0">
-            <div className="flex flex-wrap gap-2">
-              {[1, 2, 3, 4, 5, 6, 7, 8].map((i) => (
-                <Avatar key={i} className="h-10 w-10 border-2 border-white hover:scale-110 transition-transform cursor-pointer">
-                  <AvatarImage src="/placeholder.svg" />
-                  <AvatarFallback>{String.fromCharCode(64 + i)}</AvatarFallback>
-                </Avatar>
-              ))}
-            </div>
-            <Button variant="ghost" className="w-full text-primary text-sm mt-3">
-              View all connections
-            </Button>
-          </CardContent>
-        </Card>
-        
-        <Card className="shadow-sm mb-4">
-          <CardHeader className="pb-3">
-            <CardTitle className="text-base font-medium">Suggested connections</CardTitle>
-          </CardHeader>
-          <CardContent className="pt-0 space-y-3">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center">
-                <Avatar className="h-8 w-8 mr-2">
-                  <AvatarImage src="/placeholder.svg" />
-                  <AvatarFallback>S</AvatarFallback>
-                </Avatar>
-                <div>
-                  <p className="text-sm font-medium">Sarah Price</p>
-                  <p className="text-xs text-gray-500">Product Designer</p>
-                </div>
-              </div>
-              <Button variant="outline" className="h-7 text-xs rounded-full px-3">
-                Add
-              </Button>
-            </div>
-            
-            <div className="flex items-center justify-between">
-              <div className="flex items-center">
-                <Avatar className="h-8 w-8 mr-2">
-                  <AvatarImage src="/placeholder.svg" />
-                  <AvatarFallback>J</AvatarFallback>
-                </Avatar>
-                <div>
-                  <p className="text-sm font-medium">Jacky Hayward</p>
-                  <p className="text-xs text-gray-500">UX Engineer</p>
-                </div>
-              </div>
-              <Button variant="outline" className="h-7 text-xs rounded-full px-3">
-                Add
-              </Button>
-            </div>
-            
-            <div className="flex items-center justify-between">
-              <div className="flex items-center">
-                <Avatar className="h-8 w-8 mr-2">
-                  <AvatarImage src="/placeholder.svg" />
-                  <AvatarFallback>K</AvatarFallback>
-                </Avatar>
-                <div>
-                  <p className="text-sm font-medium">Kelly Fee</p>
-                  <p className="text-xs text-gray-500">Product Manager</p>
-                </div>
-              </div>
-              <Button variant="outline" className="h-7 text-xs rounded-full px-3">
-                Add
-              </Button>
-            </div>
-          </CardContent>
-        </Card>
-        
-        <Card className="shadow-sm">
-          <CardHeader className="pb-3">
-            <CardTitle className="text-base font-medium">Hangouts</CardTitle>
-          </CardHeader>
-          <CardContent className="pt-0">
-            <Button className="w-full bg-primary text-primary-foreground hover:bg-primary/90 mb-3">
+        <Card className="shadow-sm mb-4 rounded-sm border border-gray-200">
+          <div className="p-3 border-b border-gray-200">
+            <h3 className="font-medium text-sm">Start a hangout</h3>
+          </div>
+          <div className="p-3">
+            <Button 
+              className="w-full bg-blue-500 text-white hover:bg-blue-600 rounded-sm text-sm mb-3"
+            >
               Start a hangout
             </Button>
-            <p className="text-xs text-gray-500 text-center">
-              No one is hanging out right now. Be the first to start!
-            </p>
-          </CardContent>
+          </div>
+        </Card>
+        
+        <Card className="shadow-sm mb-4 rounded-sm border border-gray-200">
+          <div className="p-3 border-b border-gray-200">
+            <h3 className="font-medium text-sm">People in circles</h3>
+          </div>
+          <div className="p-3">
+            <div className="space-y-2">
+              {['Matthew Wroblewski', 'Jan Stordiau', 'Rowan Finch', 'Alice Chang', 'Amy Fish', 'Andy Hertzfeld', 'Christopher Johnson'].map((name, i) => (
+                <div key={i} className="flex items-center justify-between">
+                  <div className="flex items-center">
+                    <Avatar className="h-6 w-6 mr-2">
+                      <AvatarImage src="/placeholder.svg" />
+                      <AvatarFallback>{name.charAt(0)}</AvatarFallback>
+                    </Avatar>
+                    <span className="text-sm">{name}</span>
+                  </div>
+                  <Button 
+                    variant="ghost" 
+                    size="sm" 
+                    className="h-6 text-xs bg-blue-500 text-white hover:bg-blue-600 rounded-sm px-2"
+                  >
+                    Follow
+                  </Button>
+                </div>
+              ))}
+            </div>
+          </div>
+        </Card>
+        
+        <Card className="shadow-sm rounded-sm border border-gray-200">
+          <div className="p-3 border-b border-gray-200">
+            <h3 className="font-medium text-sm">Trending on Google+</h3>
+          </div>
+          <div className="p-3">
+            <div className="space-y-2">
+              {['#Pokemon', 'Wrestlemania', 'Justin Bieber', 'The Hunger Games', 'Instagram'].map((topic, i) => (
+                <div key={i} className="text-sm text-blue-600 hover:underline cursor-pointer">
+                  {topic}
+                </div>
+              ))}
+            </div>
+          </div>
         </Card>
       </div>
     </div>

@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Home, User, Calendar, Image, Users, Flag, Map, GameController } from 'lucide-react';
+import { Home, User, Calendar, Image, Users, Flag, Map, Menu } from 'lucide-react';
 
 interface SidebarItemProps {
   icon: React.ReactNode;
@@ -32,7 +32,7 @@ const Sidebar = () => {
         <SidebarItem icon={<Image className="h-5 w-5" />} label="Photos" />
         <SidebarItem icon={<Users className="h-5 w-5" />} label="Circles" />
         <SidebarItem icon={<Map className="h-5 w-5" />} label="Local" />
-        <SidebarItem icon={<GameController className="h-5 w-5" />} label="Games" />
+        <SidebarItem icon={<Menu className="h-5 w-5" />} label="Games" />
         <div className="py-2">
           <div className="w-full border-t border-gray-200"></div>
         </div>

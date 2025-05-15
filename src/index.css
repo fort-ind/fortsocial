@@ -86,7 +86,7 @@
   }
 
   .post-card {
-    @apply bg-white rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition-shadow duration-200;
+    @apply bg-white rounded-sm border border-gray-200 shadow-sm hover:shadow-md transition-shadow duration-200;
   }
 
   .circle-icon {
@@ -100,6 +100,6 @@
   }
 
   body {
-    @apply bg-gray-100 text-foreground font-sans;
+    @apply bg-[#f5f5f5] text-foreground font-sans;
   }
 }
