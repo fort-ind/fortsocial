@@ -26,20 +26,20 @@ export default {
 				background: 'hsl(var(--background))',
 				foreground: 'hsl(var(--foreground))',
 				primary: {
-					DEFAULT: '#4285F4', // Google Blue
-					foreground: '#FFFFFF'
+					DEFAULT: '#5ee8cf', // New primary color
+					foreground: '#000000' // Changed to black for better contrast
 				},
 				secondary: {
-					DEFAULT: '#EA4335', // Google Red
-					foreground: '#FFFFFF'
+					DEFAULT: '#D6BCFA', // Light purple
+					foreground: '#000000' 
 				},
 				accent: {
-					DEFAULT: '#FBBC05', // Google Yellow
+					DEFAULT: '#D6BCFA', // Light purple
 					foreground: '#000000' 
 				},
 				success: {
-					DEFAULT: '#34A853', // Google Green
-					foreground: '#FFFFFF'
+					DEFAULT: '#5ee8cf', // Using primary color
+					foreground: '#000000'
 				},
 				muted: {
 					DEFAULT: 'hsl(var(--muted))',

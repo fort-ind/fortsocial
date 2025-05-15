@@ -16,8 +16,8 @@ const Navbar = () => {
         {/* Logo */}
         <div className="flex items-center">
           <Link to="/" className="flex items-center">
-            <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-white font-bold text-xl">+</div>
-            <span className="ml-2 text-lg font-medium hidden md:block">PlusNet</span>
+            <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-black font-bold text-xl">f</div>
+            <span className="ml-2 text-lg font-medium hidden md:block">fort.social</span>
           </Link>
         </div>
 
@@ -28,7 +28,7 @@ const Navbar = () => {
               <Search className="absolute left-2 top-2.5 h-4 w-4 text-gray-400" />
               <Input
                 type="search"
-                placeholder="Search PlusNet"
+                placeholder="Search fort.social"
                 className="pl-8 bg-gray-100 border-0 focus-visible:ring-primary"
               />
             </div>
