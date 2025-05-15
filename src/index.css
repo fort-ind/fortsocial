@@ -92,6 +92,29 @@
   .circle-icon {
     @apply rounded-full p-2 flex items-center justify-center;
   }
+  
+  /* Skeumorphic styles */
+  .skeumorphic-btn {
+    @apply border border-gray-200 shadow-sm transition-all hover:shadow-md hover:translate-y-[-1px];
+    background-image: linear-gradient(to bottom, rgba(255,255,255,0.8) 0%, rgba(240,240,240,0.8) 100%);
+  }
+  
+  .skeumorphic-card {
+    @apply border border-gray-200 bg-white shadow-sm;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05), 0 1px 2px rgba(0,0,0,0.1);
+  }
+  
+  .skeumorphic-input {
+    @apply border border-gray-300 shadow-inner bg-gray-50;
+  }
+  
+  .embossed {
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.6), 0 1px 3px rgba(0,0,0,0.1);
+  }
+  
+  .inset {
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+  }
 }
 
 @layer base {
@@ -103,3 +126,4 @@
     @apply bg-[#f5f5f5] text-foreground font-sans;
   }
 }
+

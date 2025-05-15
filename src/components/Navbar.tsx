@@ -30,12 +30,12 @@ const Navbar = () => {
             <Input
               type="search"
               placeholder="Search fort.social"
-              className="pl-4 pr-10 bg-gray-100 border border-gray-300 rounded-sm focus-visible:ring-primary"
+              className="pl-4 pr-10 bg-gray-100 border border-gray-300 rounded-sm focus-visible:ring-primary inset skeumorphic-input"
             />
             <Button 
               variant="ghost" 
               size="icon" 
-              className="absolute right-0 top-0 h-full bg-blue-500 rounded-l-none rounded-r-sm"
+              className="absolute right-0 top-0 h-full bg-blue-500 rounded-l-none rounded-r-sm shadow-sm hover:shadow-md hover:translate-y-[-1px] transition-all"
             >
               <Search className="h-4 w-4 text-white" />
             </Button>
@@ -47,22 +47,22 @@ const Navbar = () => {
           <Button 
             variant="ghost" 
             size="icon" 
-            className="relative rounded-full hover:bg-gray-100"
+            className="relative rounded-full hover:bg-gray-100 shadow-sm hover:shadow-md hover:translate-y-[-1px] transition-all"
           >
             <Bell className="h-5 w-5" />
-            <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">2</span>
+            <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center shadow-sm">2</span>
           </Button>
           
           <Button 
             variant="ghost" 
             size="sm" 
-            className="bg-blue-500 hover:bg-blue-600 text-white rounded-sm px-4"
+            className="bg-blue-500 hover:bg-blue-600 text-white rounded-sm px-4 shadow-sm hover:shadow-md hover:translate-y-[-1px] transition-all"
           >
             Share
           </Button>
           
           <div className="flex items-center gap-2">
-            <Avatar className="h-8 w-8 cursor-pointer">
+            <Avatar className="h-8 w-8 cursor-pointer border border-gray-200 shadow-sm">
               <AvatarImage src="/placeholder.svg" />
               <AvatarFallback>U</AvatarFallback>
             </Avatar>
