@@ -1,10 +1,8 @@
-
 import React from 'react';
 import { MessageCircle, Share2, MoreHorizontal } from 'lucide-react';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
-
 interface PostCardProps {
   user: {
     name: string;
@@ -22,10 +20,12 @@ interface PostCardProps {
     shares: number;
   };
 }
-
-const PostCard: React.FC<PostCardProps> = ({ user, content, engagement }) => {
-  return (
-    <Card className="skeumorphic-card bg-white shadow-sm rounded-sm overflow-hidden border border-gray-200 max-w-2xl mx-auto transition-all hover:shadow-md">
+const PostCard: React.FC<PostCardProps> = ({
+  user,
+  content,
+  engagement
+}) => {
+  return <Card className="skeumorphic-card bg-white shadow-sm rounded-sm overflow-hidden border border-gray-200 max-w-2xl mx-auto transition-all hover:shadow-md">
       <div className="flex items-start p-4 pb-2">
         <Avatar className="h-10 w-10 mr-3 border border-gray-200 shadow-sm">
           <AvatarImage src={user.avatar} alt={user.name} />
@@ -47,11 +47,9 @@ const PostCard: React.FC<PostCardProps> = ({ user, content, engagement }) => {
       
       <div className="px-4 py-2">
         <p className="mb-3 text-sm">{content.text}</p>
-        {content.image && (
-          <div className="overflow-hidden mb-3 border border-gray-200 shadow-sm">
-            <img src={content.image} alt="Post content" className="w-full h-auto" />
-          </div>
-        )}
+        {content.image && <div className="overflow-hidden mb-3 border border-gray-200 shadow-sm">
+            
+          </div>}
       </div>
       
       <div className="px-4 py-2 border-t flex items-center space-x-2 text-sm bg-gray-50">
@@ -80,14 +78,8 @@ const PostCard: React.FC<PostCardProps> = ({ user, content, engagement }) => {
           <AvatarImage src="/placeholder.svg" alt="Comment" />
           <AvatarFallback>U</AvatarFallback>
         </Avatar>
-        <input 
-          type="text" 
-          placeholder="Add a comment..." 
-          className="w-full bg-transparent border-0 focus:outline-none text-sm skeumorphic-input rounded-md px-2 py-1 inset"
-        />
+        <input type="text" placeholder="Add a comment..." className="w-full bg-transparent border-0 focus:outline-none text-sm skeumorphic-input rounded-md px-2 py-1 inset" />
       </div>
-    </Card>
-  );
+    </Card>;
 };
-
 export default PostCard;
