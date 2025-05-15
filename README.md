@@ -1,14 +1,10 @@
 # Welcome to fort.social 
 
-## Project info
+## info
 
-**URL**: https://lovable.dev/projects/56fbcbb7-d258-4915-949e-ed3cfda2dc3b
+There is NO BACKEND!!! i havent made one and i dont feel like making one yet
 
 ## editing mii :D
-
-Simply visit the [Lovable Project](https://lovable.dev/projects/56fbcbb7-d258-4915-949e-ed3cfda2dc3b) and start prompting.
-
-Changes made via Lovable will be committed automatically to this repo.
 
 **Use your preferred IDE**
 
