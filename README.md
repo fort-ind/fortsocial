@@ -16,7 +16,7 @@ Follow these steps:
 
 ```sh
 # Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+git clone https://github.com/fort-ind/fortsocial.git
 
 # Step 2: Navigate to the project directory.
 cd <YOUR_PROJECT_NAME>
@@ -52,4 +52,3 @@ This project is built with:
 - shadcn-ui
 - Tailwind CSS
 
-](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
