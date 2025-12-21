@@ -7,39 +7,41 @@ import { Button } from '@/components/ui/button';
 const RightSidebar = () => {
   return (
     <div className="hidden lg:block w-60 pt-4 pl-4">
-      <div className="sticky top-16">
-        <Card className="skeumorphic-card shadow-sm mb-4 rounded-sm border border-gray-200">
-          <div className="p-3 border-b border-gray-200 bg-gray-50 embossed">
-            <h3 className="font-medium text-sm">Start a hangout</h3>
+      <div className="sticky top-16 space-y-4">
+        <Card className="material-card overflow-hidden">
+          <div className="p-3 border-b border-border bg-muted">
+            <h3 className="font-medium text-sm text-foreground">Start a hangout</h3>
           </div>
           <div className="p-3">
             <Button 
-              className="w-full bg-blue-500 text-white hover:bg-blue-600 rounded-sm text-sm mb-3 shadow-sm hover:shadow-md hover:translate-y-[-1px] transition-all"
+              variant="material"
+              className="w-full"
+              size="sm"
             >
               Start a hangout
             </Button>
           </div>
         </Card>
         
-        <Card className="skeumorphic-card shadow-sm mb-4 rounded-sm border border-gray-200">
-          <div className="p-3 border-b border-gray-200 bg-gray-50 embossed">
-            <h3 className="font-medium text-sm">People in circles</h3>
+        <Card className="material-card overflow-hidden">
+          <div className="p-3 border-b border-border bg-muted">
+            <h3 className="font-medium text-sm text-foreground">People in circles</h3>
           </div>
           <div className="p-3">
             <div className="space-y-2">
               {['Matthew Wroblewski', 'Jan Stordiau', 'Rowan Finch', 'Alice Chang', 'Amy Fish', 'Andy Hertzfeld', 'Christopher Johnson'].map((name, i) => (
                 <div key={i} className="flex items-center justify-between">
                   <div className="flex items-center">
-                    <Avatar className="h-6 w-6 mr-2 border border-gray-200 shadow-sm">
+                    <Avatar className="h-6 w-6 mr-2 shadow-material-1">
                       <AvatarImage src="/placeholder.svg" />
-                      <AvatarFallback>{name.charAt(0)}</AvatarFallback>
+                      <AvatarFallback className="bg-secondary text-secondary-foreground text-xs">{name.charAt(0)}</AvatarFallback>
                     </Avatar>
-                    <span className="text-sm">{name}</span>
+                    <span className="text-sm text-foreground">{name}</span>
                   </div>
                   <Button 
-                    variant="ghost" 
-                    size="sm" 
-                    className="h-6 text-xs bg-blue-500 text-white hover:bg-blue-600 rounded-sm px-2 shadow-sm hover:shadow-md hover:translate-y-[-1px] transition-all"
+                    variant="material"
+                    size="sm"
+                    className="h-6 text-xs px-2"
                   >
                     Follow
                   </Button>
@@ -49,14 +51,14 @@ const RightSidebar = () => {
           </div>
         </Card>
         
-        <Card className="skeumorphic-card shadow-sm rounded-sm border border-gray-200">
-          <div className="p-3 border-b border-gray-200 bg-gray-50 embossed">
-            <h3 className="font-medium text-sm">Trending on Google+</h3>
+        <Card className="material-card overflow-hidden">
+          <div className="p-3 border-b border-border bg-muted">
+            <h3 className="font-medium text-sm text-foreground">Trending on fort.social</h3>
           </div>
           <div className="p-3">
             <div className="space-y-2">
               {['#Pokemon', 'Wrestlemania', 'Justin Bieber', 'The Hunger Games', 'Instagram'].map((topic, i) => (
-                <div key={i} className="text-sm text-blue-600 hover:underline cursor-pointer hover:text-blue-800 transition-colors">
+                <div key={i} className="text-sm text-primary hover:text-primary/80 cursor-pointer transition-colors">
                   {topic}
                 </div>
               ))}
