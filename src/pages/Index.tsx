@@ -9,25 +9,26 @@ import { mockPosts } from '@/data/mockData';
 
 const Index = () => {
   return (
-    <div className="min-h-screen flex flex-col bg-[#f5f5f5]">
+    <div className="min-h-screen flex flex-col bg-background">
       <Navbar />
       
       <div className="flex-1 container mx-auto flex">
         <Sidebar />
         
         <main className="flex-1 py-4 px-2 md:px-6 mx-auto">
-          <div className="flex justify-center mb-3">
-            <div className="inline-flex rounded-full overflow-hidden bg-white border border-gray-200 text-sm">
-              <button className="px-4 py-1 font-medium bg-blue-500 text-white">All</button>
-              <button className="px-4 py-1 font-medium hover:bg-gray-50">Family</button>
-              <button className="px-4 py-1 font-medium hover:bg-gray-50">Friends</button>
-              <button className="px-4 py-1 font-medium hover:bg-gray-50">More ▾</button>
+          {/* Circle Filter Tabs */}
+          <div className="flex justify-center mb-4">
+            <div className="inline-flex rounded-sm overflow-hidden shadow-material-1 bg-card text-sm">
+              <button className="circle-tab active">All</button>
+              <button className="circle-tab">Family</button>
+              <button className="circle-tab">Friends</button>
+              <button className="circle-tab">More ▾</button>
             </div>
           </div>
           
           <CreatePostCard />
           
-          <div className="space-y-5">
+          <div className="space-y-4">
             {mockPosts.map((post) => (
               <PostCard 
                 key={post.id}

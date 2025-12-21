@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { Image, Smile, Users, MapPin, Send } from 'lucide-react';
+import { Image, Smile, Users, MapPin } from 'lucide-react';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
@@ -12,40 +12,39 @@ const CreatePostCard = () => {
   const handleSubmit = () => {
     console.log('Posting:', postText);
     setPostText('');
-    // In a real app, this would send the post to an API
   };
   
   return (
-    <Card className="skeumorphic-card bg-white shadow-sm mb-5 rounded-sm overflow-hidden border border-gray-200 max-w-2xl mx-auto">
+    <Card className="material-card bg-card mb-5 overflow-hidden max-w-2xl mx-auto">
       <div className="p-4 pb-2">
         <div className="flex gap-3">
-          <Avatar className="h-10 w-10 border border-gray-200 shadow-sm">
+          <Avatar className="h-10 w-10 shadow-material-1">
             <AvatarImage src="/placeholder.svg" alt="Profile" />
-            <AvatarFallback>U</AvatarFallback>
+            <AvatarFallback className="bg-secondary text-secondary-foreground">U</AvatarFallback>
           </Avatar>
-          <div className="flex-1 bg-[#f5f5f5] rounded-sm p-2 inset">
+          <div className="flex-1 bg-muted rounded-sm p-2">
             <Textarea
               value={postText}
               onChange={(e) => setPostText(e.target.value)}
               placeholder="Share what's new..."
-              className="resize-none border-none focus-visible:ring-0 p-0 h-16 text-base bg-transparent"
+              className="resize-none border-none focus-visible:ring-0 p-0 h-16 text-base bg-transparent text-foreground placeholder:text-muted-foreground"
             />
           </div>
         </div>
       </div>
       
       <div className="px-4 pb-4 flex items-center justify-between">
-        <div className="flex items-center space-x-2">
-          <Button variant="ghost" size="sm" className="text-gray-600 rounded-full hover:bg-gray-100 p-1 hover:shadow-sm transition-all">
+        <div className="flex items-center space-x-1">
+          <Button variant="ghost" size="icon" className="text-muted-foreground hover:text-foreground hover:bg-muted">
             <Image className="h-5 w-5" />
           </Button>
-          <Button variant="ghost" size="sm" className="text-gray-600 rounded-full hover:bg-gray-100 p-1 hover:shadow-sm transition-all">
+          <Button variant="ghost" size="icon" className="text-muted-foreground hover:text-foreground hover:bg-muted">
             <Users className="h-5 w-5" />
           </Button>
-          <Button variant="ghost" size="sm" className="text-gray-600 rounded-full hover:bg-gray-100 p-1 hover:shadow-sm transition-all">
+          <Button variant="ghost" size="icon" className="text-muted-foreground hover:text-foreground hover:bg-muted">
             <Smile className="h-5 w-5" />
           </Button>
-          <Button variant="ghost" size="sm" className="text-gray-600 rounded-full hover:bg-gray-100 p-1 hover:shadow-sm transition-all">
+          <Button variant="ghost" size="icon" className="text-muted-foreground hover:text-foreground hover:bg-muted">
             <MapPin className="h-5 w-5" />
           </Button>
         </div>
@@ -53,7 +52,8 @@ const CreatePostCard = () => {
         <Button 
           onClick={handleSubmit} 
           disabled={!postText.trim()}
-          className="bg-blue-500 hover:bg-blue-600 text-white rounded-sm shadow-sm hover:shadow-md hover:translate-y-[-1px] transition-all"
+          variant="material"
+          size="sm"
         >
           Share
         </Button>
