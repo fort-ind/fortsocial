@@ -8,7 +8,7 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { useIsMobile } from '@/hooks/use-mobile';
 
 const Navbar = () => {
-  const isMobile = useIsMobile();
+  
   
   return (
     <nav className="sticky top-0 z-50 bg-primary shadow-material-2 py-2">
