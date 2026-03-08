@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Image, Smile, Users, MapPin } from 'lucide-react';
+import React, { useState, useRef } from 'react';
+import { Image, Smile, Users, MapPin, X } from 'lucide-react';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
@@ -9,13 +9,33 @@ import { usePosts } from '@/hooks/usePosts';
 
 const CreatePostCard = () => {
   const [postText, setPostText] = useState('');
+  const [selectedImage, setSelectedImage] = useState<File | null>(null);
+  const [imagePreview, setImagePreview] = useState<string | null>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
   const { profile } = useAuth();
   const { createPost } = usePosts();
   
+  const handleImageSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    setSelectedImage(file);
+    const reader = new FileReader();
+    reader.onloadend = () => setImagePreview(reader.result as string);
+    reader.readAsDataURL(file);
+  };
+
+  const removeImage = () => {
+    setSelectedImage(null);
+    setImagePreview(null);
+    if (fileInputRef.current) fileInputRef.current.value = '';
+  };
+
   const handleSubmit = () => {
-    if (!postText.trim()) return;
-    createPost.mutate({ content: postText });
-    setPostText('');
+    if (!postText.trim() && !selectedImage) return;
+    createPost.mutate(
+      { content: postText, imageFile: selectedImage || undefined },
+      { onSuccess: () => { setPostText(''); removeImage(); } }
+    );
   };
   
   return (
@@ -35,11 +55,32 @@ const CreatePostCard = () => {
             />
           </div>
         </div>
+
+        {imagePreview && (
+          <div className="mt-3 relative inline-block">
+            <img src={imagePreview} alt="Preview" className="max-h-48 rounded-sm shadow-material-1" />
+            <Button
+              variant="destructive"
+              size="icon"
+              className="absolute top-1 right-1 h-6 w-6"
+              onClick={removeImage}
+            >
+              <X className="h-3 w-3" />
+            </Button>
+          </div>
+        )}
       </div>
       
       <div className="px-4 pb-4 flex items-center justify-between">
         <div className="flex items-center space-x-1">
-          <Button variant="ghost" size="icon" className="text-muted-foreground hover:text-foreground hover:bg-muted">
+          <input
+            ref={fileInputRef}
+            type="file"
+            accept="image/*"
+            className="hidden"
+            onChange={handleImageSelect}
+          />
+          <Button variant="ghost" size="icon" className="text-muted-foreground hover:text-foreground hover:bg-muted" onClick={() => fileInputRef.current?.click()}>
             <Image className="h-5 w-5" />
           </Button>
           <Button variant="ghost" size="icon" className="text-muted-foreground hover:text-foreground hover:bg-muted">
@@ -55,7 +96,7 @@ const CreatePostCard = () => {
         
         <Button 
           onClick={handleSubmit} 
-          disabled={!postText.trim() || createPost.isPending}
+          disabled={(!postText.trim() && !selectedImage) || createPost.isPending}
           variant="material"
           size="sm"
         >
