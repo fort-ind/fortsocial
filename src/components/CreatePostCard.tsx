@@ -1,16 +1,20 @@
-
 import React, { useState } from 'react';
 import { Image, Smile, Users, MapPin } from 'lucide-react';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Textarea } from '@/components/ui/textarea';
+import { useAuth } from '@/contexts/AuthContext';
+import { usePosts } from '@/hooks/usePosts';
 
 const CreatePostCard = () => {
   const [postText, setPostText] = useState('');
+  const { profile } = useAuth();
+  const { createPost } = usePosts();
   
   const handleSubmit = () => {
-    console.log('Posting:', postText);
+    if (!postText.trim()) return;
+    createPost.mutate({ content: postText });
     setPostText('');
   };
   
@@ -19,8 +23,8 @@ const CreatePostCard = () => {
       <div className="p-4 pb-2">
         <div className="flex gap-3">
           <Avatar className="h-10 w-10 shadow-material-1">
-            <AvatarImage src="/placeholder.svg" alt="Profile" />
-            <AvatarFallback className="bg-secondary text-secondary-foreground">U</AvatarFallback>
+            <AvatarImage src={profile?.avatar_url || '/placeholder.svg'} alt="Profile" />
+            <AvatarFallback className="bg-secondary text-secondary-foreground">{profile?.display_name?.charAt(0) || 'U'}</AvatarFallback>
           </Avatar>
           <div className="flex-1 bg-muted rounded-sm p-2">
             <Textarea
@@ -51,11 +55,11 @@ const CreatePostCard = () => {
         
         <Button 
           onClick={handleSubmit} 
-          disabled={!postText.trim()}
+          disabled={!postText.trim() || createPost.isPending}
           variant="material"
           size="sm"
         >
-          Share
+          {createPost.isPending ? 'Sharing...' : 'Share'}
         </Button>
       </div>
     </Card>
