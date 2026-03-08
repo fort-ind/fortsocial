@@ -37,11 +37,27 @@ export const usePosts = () => {
   });
 
   const createPost = useMutation({
-    mutationFn: async ({ content, imageUrl }: { content: string; imageUrl?: string }) => {
+    mutationFn: async ({ content, imageFile }: { content: string; imageFile?: File }) => {
+      let imageUrl: string | null = null;
+
+      if (imageFile) {
+        const fileExt = imageFile.name.split('.').pop();
+        const filePath = `${user!.id}/${crypto.randomUUID()}.${fileExt}`;
+        const { error: uploadError } = await supabase.storage
+          .from('post-images')
+          .upload(filePath, imageFile);
+        if (uploadError) throw uploadError;
+
+        const { data: urlData } = supabase.storage
+          .from('post-images')
+          .getPublicUrl(filePath);
+        imageUrl = urlData.publicUrl;
+      }
+
       const { error } = await supabase.from('posts').insert({
         user_id: user!.id,
         content,
-        image_url: imageUrl || null,
+        image_url: imageUrl,
       });
       if (error) throw error;
     },
@@ -79,9 +95,7 @@ export const usePosts = () => {
       });
       if (error) throw error;
     },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['posts'] });
-    },
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: ['posts'] }),
   });
 
   const deleteComment = useMutation({
