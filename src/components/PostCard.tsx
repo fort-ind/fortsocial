@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { MessageCircle, Share2, MoreHorizontal, Trash2 } from 'lucide-react';
+import { MessageCircle, Share2, MoreHorizontal, Trash2, Music } from 'lucide-react';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
@@ -7,6 +7,7 @@ import { useAuth } from '@/contexts/AuthContext';
 import { usePosts, PostWithDetails } from '@/hooks/usePosts';
 import { useToast } from '@/hooks/use-toast';
 import { formatDistanceToNow } from 'date-fns';
+import FollowButton from '@/components/FollowButton';
 
 interface PostCardProps {
   post: PostWithDetails;

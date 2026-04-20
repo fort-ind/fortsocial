@@ -9,7 +9,15 @@ export interface PostWithDetails {
   content: string;
   image_url: string | null;
   created_at: string;
-  profiles: { display_name: string; avatar_url: string | null; handle: string | null };
+  profiles: {
+    display_name: string;
+    avatar_url: string | null;
+    handle: string | null;
+    personal_message?: string | null;
+    mood?: string | null;
+    now_playing?: string | null;
+    is_private?: boolean | null;
+  };
   likes: { id: string; user_id: string }[];
   comments: { id: string; user_id: string; content: string; created_at: string; profiles: { display_name: string; avatar_url: string | null } }[];
 }
@@ -26,7 +34,7 @@ export const usePosts = () => {
         .from('posts')
         .select(`
           *,
-          profiles!posts_user_id_fkey(display_name, avatar_url, handle),
+          profiles!posts_user_id_fkey(display_name, avatar_url, handle, personal_message, mood, now_playing, is_private),
           likes(id, user_id),
           comments(id, user_id, content, created_at, profiles!comments_user_id_fkey(display_name, avatar_url))
         `)
