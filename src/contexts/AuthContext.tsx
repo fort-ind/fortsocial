@@ -8,6 +8,10 @@ interface Profile {
   handle: string | null;
   avatar_url: string | null;
   bio: string | null;
+  is_private?: boolean;
+  personal_message?: string | null;
+  mood?: string | null;
+  now_playing?: string | null;
 }
 
 interface AuthContextType {

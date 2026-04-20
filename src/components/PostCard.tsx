@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { MessageCircle, Share2, MoreHorizontal, Trash2 } from 'lucide-react';
+import { MessageCircle, Share2, MoreHorizontal, Trash2, Music } from 'lucide-react';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
@@ -7,6 +7,7 @@ import { useAuth } from '@/contexts/AuthContext';
 import { usePosts, PostWithDetails } from '@/hooks/usePosts';
 import { useToast } from '@/hooks/use-toast';
 import { formatDistanceToNow } from 'date-fns';
+import FollowButton from '@/components/FollowButton';
 
 interface PostCardProps {
   post: PostWithDetails;
@@ -50,17 +51,31 @@ const PostCard: React.FC<PostCardProps> = ({ post }) => {
           <AvatarImage src={post.profiles?.avatar_url || '/placeholder.svg'} alt={post.profiles?.display_name} />
           <AvatarFallback className="bg-secondary text-secondary-foreground">{post.profiles?.display_name?.charAt(0) || 'U'}</AvatarFallback>
         </Avatar>
-        <div className="flex flex-col flex-1">
-          <div className="flex items-center justify-between">
-            <div>
-              <span className="font-medium text-primary">{post.profiles?.display_name}</span>
+        <div className="flex flex-col flex-1 min-w-0">
+          <div className="flex items-center justify-between gap-2">
+            <div className="min-w-0">
+              <span className="font-medium text-primary">
+                {post.profiles?.mood && <span className="mr-1">{post.profiles.mood}</span>}
+                {post.profiles?.display_name}
+              </span>
+              {post.profiles?.personal_message && (
+                <span className="text-xs text-muted-foreground ml-2 italic">— {post.profiles.personal_message}</span>
+              )}
               <span className="text-xs text-muted-foreground ml-2">{timeAgo}</span>
             </div>
-            <Button variant="ghost" size="icon" className="h-8 w-8 text-muted-foreground hover:text-foreground">
-              <MoreHorizontal className="h-4 w-4" />
-            </Button>
+            <div className="flex items-center gap-2 shrink-0">
+              <FollowButton targetUserId={post.user_id} targetIsPrivate={!!post.profiles?.is_private} />
+              <Button variant="ghost" size="icon" className="h-8 w-8 text-muted-foreground hover:text-foreground">
+                <MoreHorizontal className="h-4 w-4" />
+              </Button>
+            </div>
           </div>
           <div className="text-xs text-muted-foreground">@{post.profiles?.handle}</div>
+          {post.profiles?.now_playing && (
+            <div className="text-xs text-muted-foreground flex items-center gap-1 mt-0.5">
+              <Music className="h-3 w-3" /> {post.profiles.now_playing}
+            </div>
+          )}
         </div>
       </div>
       
