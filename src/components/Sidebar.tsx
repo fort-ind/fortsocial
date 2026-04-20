@@ -1,40 +1,35 @@
-
 import React from 'react';
-import { Home, User, Calendar, Image, Users, Flag, Map, Menu } from 'lucide-react';
+import { NavLink } from 'react-router-dom';
+import { Home, User, Users, Image, Calendar, Map, Menu } from 'lucide-react';
 
 interface SidebarItemProps {
+  to: string;
   icon: React.ReactNode;
   label: string;
-  active?: boolean;
 }
 
-const SidebarItem: React.FC<SidebarItemProps> = ({ icon, label, active }) => {
-  return (
-    <div 
-      className={`material-list-item ${active ? 'active' : ''}`}
-    >
-      <div className="mr-3">{icon}</div>
-      <span className="text-sm">{label}</span>
-    </div>
-  );
-};
+const SidebarItem: React.FC<SidebarItemProps> = ({ to, icon, label }) => (
+  <NavLink
+    to={to}
+    end
+    className={({ isActive }) => `material-list-item ${isActive ? 'active' : ''}`}
+  >
+    <div className="mr-3">{icon}</div>
+    <span className="text-sm">{label}</span>
+  </NavLink>
+);
 
 const Sidebar = () => {
   return (
     <div className="hidden md:block w-48 pt-4 pr-4">
       <div className="material-card p-2 rounded-sm">
-        <SidebarItem icon={<Home className="h-5 w-5" />} label="Home" active />
-        <SidebarItem icon={<User className="h-5 w-5" />} label="Profile" />
-        <SidebarItem icon={<Users className="h-5 w-5" />} label="Explore" />
-        <SidebarItem icon={<Calendar className="h-5 w-5" />} label="Events" />
-        <SidebarItem icon={<Image className="h-5 w-5" />} label="Photos" />
-        <SidebarItem icon={<Users className="h-5 w-5" />} label="Circles" />
-        <SidebarItem icon={<Map className="h-5 w-5" />} label="Local" />
-        <SidebarItem icon={<Menu className="h-5 w-5" />} label="Games" />
-        <div className="my-2">
-          <div className="w-full border-t border-border"></div>
-        </div>
-        <SidebarItem icon={<span className="flex h-5 w-5 items-center justify-center">•••</span>} label="More" />
+        <SidebarItem to="/" icon={<Home className="h-5 w-5" />} label="Home" />
+        <SidebarItem to="/profile" icon={<User className="h-5 w-5" />} label="Profile" />
+        <SidebarItem to="/groups" icon={<Users className="h-5 w-5" />} label="Groups" />
+        <div className="material-list-item opacity-50 cursor-not-allowed"><div className="mr-3"><Calendar className="h-5 w-5" /></div><span className="text-sm">Events</span></div>
+        <div className="material-list-item opacity-50 cursor-not-allowed"><div className="mr-3"><Image className="h-5 w-5" /></div><span className="text-sm">Photos</span></div>
+        <div className="material-list-item opacity-50 cursor-not-allowed"><div className="mr-3"><Map className="h-5 w-5" /></div><span className="text-sm">Local</span></div>
+        <div className="material-list-item opacity-50 cursor-not-allowed"><div className="mr-3"><Menu className="h-5 w-5" /></div><span className="text-sm">Games</span></div>
       </div>
     </div>
   );
