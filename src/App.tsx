@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { AuthProvider, useAuth } from "@/contexts/AuthContext";
 import Index from "./pages/Index";
 import Auth from "./pages/Auth";
+import Profile from "./pages/Profile";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -27,6 +28,7 @@ const App = () => (
           <Routes>
             <Route path="/auth" element={<Auth />} />
             <Route path="/" element={<ProtectedRoute><Index /></ProtectedRoute>} />
+            <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
