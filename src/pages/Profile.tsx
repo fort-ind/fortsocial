@@ -12,7 +12,7 @@ import { toast } from 'sonner';
 import { ArrowLeft, Upload, Loader2 } from 'lucide-react';
 
 const Profile = () => {
-  const { user, profile, loading } = useAuth();
+  const { user, profile, loading, refreshProfile } = useAuth();
   const navigate = useNavigate();
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -84,6 +84,7 @@ const Profile = () => {
       setAvatarFile(null);
       setAvatarPreview(null);
       setAvatarUrl(newAvatarUrl);
+      await refreshProfile();
     } catch (err: any) {
       toast.error(err.message || 'Failed to update profile');
     } finally {
