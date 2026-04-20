@@ -54,7 +54,7 @@ const Navbar = () => {
             <Bell className="h-5 w-5" />
           </Button>
           
-          <div className="flex items-center gap-2">
+          <Link to="/profile" className="flex items-center gap-2 hover:opacity-90">
             <Avatar className="h-8 w-8 cursor-pointer shadow-material-1">
               <AvatarImage src={profile?.avatar_url || '/placeholder.svg'} />
               <AvatarFallback className="bg-secondary text-secondary-foreground">{profile?.display_name?.charAt(0) || 'U'}</AvatarFallback>
@@ -62,7 +62,7 @@ const Navbar = () => {
             <span className="hidden md:inline font-medium text-sm text-primary-foreground">
               Hi, {profile?.display_name || 'User'} ▾
             </span>
-          </div>
+          </Link>
 
           <Button 
             variant="ghost" 
